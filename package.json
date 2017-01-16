@@ -1,0 +1,19 @@
+{
+  "name": "card-flipping-game",
+  "version": "1.0.0",
+  "description": "Classic memory game.  Flip two cards, if they match, remove them!",
+  "main": "game.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlarbi/card-flipping-game.git"
+  },
+  "author": "Dean Larbi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlarbi/card-flipping-game/issues"
+  },
+  "homepage": "https://github.com/dlarbi/card-flipping-game#readme"
+}
