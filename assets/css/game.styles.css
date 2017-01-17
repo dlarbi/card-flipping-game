@@ -1,0 +1,78 @@
+/*
+* We use the Block, Element, Modifier (BEM) pattern for our CSS.
+* Blocks:    i.e. .menu_list
+* Elements:  i.e. .menu_list__item
+* Modifiers: i.e. .menu_list__item--bold
+*/
+
+body {
+  margin: 0;
+}
+
+.card_flipping_game {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.card_flipping_game__board {
+  max-width: 800px;
+  margin: 0 auto;
+  height: 80%;
+  position: relative;
+  top: 10%;
+}
+
+.card_flipping_game__board_space {
+  height: 25%;
+  width: 15%;
+  float: left;
+}
+
+.card_flipping_game__card {
+  height: 90%;
+  max-width: 85%;
+  margin: 5% auto;
+  border: 1px solid #eaeaea;
+  text-align: center;
+  cursor: pointer;
+  background:#fff;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.05);
+  -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,.05);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.05);
+  transition: all .4s;
+}
+.card_flipping_game__card:hover {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);
+}
+.card_flipping_game__card_value {
+  font-weight: bold;
+  font-size: 36px;
+  position: relative;
+  top: 50%;
+  margin-top: -18px;
+}
+.card_flipping_game__card_face {
+  height: 90%;
+  width: 86%;
+  margin: 7%;
+  float: left;
+  -webkit-box-shadow: inset 0px 0px 5px -1px rgba(0,0,0,0.35);
+  -moz-box-shadow: inset 0px 0px 5px -1px rgba(0,0,0,0.35);
+  box-shadow: inset 0px 0px 5px -1px rgba(0,0,0,0.35);
+}
+.card_flipping_game__card_icon {
+  position:relative;
+  height:60px;
+  top:50%;
+  margin-top:-30px;
+}
+.card_flipping_game__card_icon--smaller {
+  height:40px;
+  margin-top:-20px;
+  position:relative;
+  top:50%;
+}

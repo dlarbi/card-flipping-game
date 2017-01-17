@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/dlarbi/card-flipping-game/issues"
   },
-  "homepage": "https://github.com/dlarbi/card-flipping-game#readme"
+  "homepage": "https://github.com/dlarbi/card-flipping-game#readme",
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "jest": "^18.1.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0"
+  }
 }
