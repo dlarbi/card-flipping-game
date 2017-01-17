@@ -5,8 +5,12 @@ require('./assets/css/game.styles.css');
 
 var CardFlippingGame = function(Board, Card, options) {
 
+  /*
+  * Private (indicate private members with "_" as prefix)
+  */
   var _board = new Board(options.boardSize, Card);
-
+  var _faceUpCards = [];
+  var _removedCount = 0;
   var _cards = (function() {
     var cards = [];
     var cardValues = generateCardValues(_board.getSize());
@@ -36,12 +40,16 @@ var CardFlippingGame = function(Board, Card, options) {
     return shuffleArray(cards);
   })();
 
-  var _faceUpCards = [];
-
+  /*
+  * Public
+  */
   this.render = function() {
     this.renderBoard();
     this.renderCards();
     this.bindEvents();
+    if(_removedCount === _board.getSize()) {
+      alert('You win!');
+    }
   }
 
   this.playCard = function(card) {
@@ -51,14 +59,17 @@ var CardFlippingGame = function(Board, Card, options) {
   }
 
   this.unflipFaceupCards = function() {
-    _faceUpCards[0].flip();
-    _faceUpCards[1].flip();
+    _faceUpCards.forEach(function(card, i, cards) {
+      card.flip();
+    })
     _faceUpCards = [];
   }
 
   this.removeFaceupCards = function() {
-    _faceUpCards[0].remove();
-    _faceUpCards[1].remove();
+    _faceUpCards.forEach(function(card, i, cards) {
+      card.remove();
+      _removedCount++;
+    })
     _faceUpCards = [];
   }
 
@@ -95,7 +106,7 @@ var CardFlippingGame = function(Board, Card, options) {
   }
 
   this.renderCards = function() {
-    var DOMBoardSpaces = document.getElementsByClassName('card_flipping_game__board_space');
+    var boardSpaceEls = document.getElementsByClassName('card_flipping_game__board_space');
     for(var i=0;i<_cards.length;i++) {
       var card = _cards[i];
       var cardComponent = TemplateEngine(card.getTemplate(), {
@@ -103,14 +114,14 @@ var CardFlippingGame = function(Board, Card, options) {
         value: card.value,
         faceColor: card.faceColor
       });
-      DOMBoardSpaces[i].innerHTML = cardComponent;
+      boardSpaceEls[i].innerHTML = cardComponent;
     }
   }
 
   this.bindEvents = function() {
-    var DOMCards = document.getElementsByClassName('card_flipping_game__card');
-    for (var i = 0; i < DOMCards.length; i++) {
-      DOMCards[i].addEventListener('click', this.playCard.bind(this, _cards[i]), false);
+    var cardEls = document.getElementsByClassName('card_flipping_game__card');
+    for (var i = 0; i < cardEls.length; i++) {
+      cardEls[i].addEventListener('click', this.playCard.bind(this, _cards[i]), false);
     }
   }
 }
