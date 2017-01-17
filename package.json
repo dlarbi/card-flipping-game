@@ -4,7 +4,9 @@
   "description": "Classic memory game.  Flip two cards, if they match, remove them!",
   "main": "game.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build:dev": "npm run test && webpack",
+    "build:production": "npm run test && NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,6 @@ var CardFlippingGame = function(Board, Card, options) {
   var _board = new Board(options.boardSize, Card);
   var _removedCount = 0;
 
-
   /*
   * Public.
   */
@@ -48,7 +47,8 @@ var CardFlippingGame = function(Board, Card, options) {
     this.renderCards();
     this.bindEvents();
     if(_removedCount === _board.getSize()) {
-      alert('You win!');
+      alert('You win! Play again.');
+      location.reload();
     }
   }
 
@@ -130,4 +130,5 @@ var CardFlippingGame = function(Board, Card, options) {
     }
   }
 }
+
 module.exports = CardFlippingGame;
