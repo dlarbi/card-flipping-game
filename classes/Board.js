@@ -1,4 +1,6 @@
-var Board = function(size, Card) {
+var TemplateEngine = require('./TemplateEngine.js');
+
+var Board = function(size) {
   var _size = size;
 
   this.getSize = function() {
@@ -12,6 +14,16 @@ var Board = function(size, Card) {
               '<%}%>' +
            '</div>'
 
+  }
+
+  this.render = function(node) {
+    var N = _size;
+    var arrayOfLengthGameSize = Array.apply(null, {length: N}).map(Number.call, Number)
+    var boardComponent = TemplateEngine(this.getTemplate(), {
+      size: _size,
+      cards: arrayOfLengthGameSize
+    });
+    node.innerHTML = boardComponent
   }
 }
 

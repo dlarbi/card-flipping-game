@@ -5,7 +5,7 @@ var CardFlippingGame = function(Board, Card, options) {
   /*
   * Private (indicate private members with "_" as prefix)
   */
-  var _board = new Board(options.boardSize, Card);
+  var _board = new Board(options.boardSize);
   var _removedCount = 0;
 
   /*
@@ -102,31 +102,23 @@ var CardFlippingGame = function(Board, Card, options) {
   }
 
   this.renderBoard = function() {
-    var boardComponent = TemplateEngine(_board.getTemplate(), {
-      size: _board.getSize(),
-      cards: this.cards
-    });
     var gameWrapper = document.getElementById('card_flipping_game');
-    if(gameWrapper) gameWrapper.innerHTML = boardComponent;
+    if(gameWrapper) _board.render(gameWrapper);
   }
 
   this.renderCards = function() {
     var boardSpaceEls = document.getElementsByClassName('card_flipping_game__board_space');
     for(var i=0;i<this.cards.length;i++) {
       var card = this.cards[i];
-      var cardComponent = TemplateEngine(card.getTemplate(), {
-        uid: card.uid,
-        value: card.value,
-        faceColor: card.faceColor
-      });
-      if(boardSpaceEls[i]) boardSpaceEls[i].innerHTML = cardComponent;
+      if(boardSpaceEls[i]) card.render(boardSpaceEls[i]);
     }
   }
 
   this.bindEvents = function() {
     var cardEls = document.getElementsByClassName('card_flipping_game__card');
     for (var i = 0; i < cardEls.length; i++) {
-      cardEls[i].addEventListener('click', this.playCard.bind(this, this.cards[i]), false);
+      var eventType = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click'
+      cardEls[i].addEventListener(eventType, this.playCard.bind(this, this.cards[i]), false);
     }
   }
 }

@@ -1,3 +1,5 @@
+var TemplateEngine = require('./TemplateEngine.js');
+
 var color_codes = {};
 function stringToColorCode(str) {
   return (str in color_codes) ? color_codes[str] : (color_codes[str] = '#'+ ('000000' + (Math.random()*0xFFFFFF<<0).toString(16)).slice(-6));
@@ -34,6 +36,15 @@ var Card = function(value) {
         '<div class="card_flipping_game__card" data-uid="<%this.uid%>">'+
           '<img src="assets/images/crown-icon.png" class="card_flipping_game__card_icon"/>'+
         '</div>';
+  }
+
+  this.render = function(node) {
+    var cardComponent = TemplateEngine(this.getTemplate(), {
+      uid: this.uid,
+      value: this.value,
+      faceColor: this.faceColor
+    });
+    node.innerHTML = cardComponent
   }
 }
 
