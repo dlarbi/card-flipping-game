@@ -23,7 +23,8 @@ var Board = function(size) {
       size: _size,
       cards: arrayOfLengthGameSize
     });
-    node.innerHTML = boardComponent
+    if(node) node.innerHTML = boardComponent;
+    return boardComponent;
   }
 }
 

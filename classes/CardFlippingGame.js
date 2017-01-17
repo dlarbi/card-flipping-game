@@ -102,7 +102,7 @@ var CardFlippingGame = function(Board, Card, options) {
   }
 
   this.renderBoard = function() {
-    var gameWrapper = document.getElementById('card_flipping_game');
+    var gameWrapper = document.getElementById("game_wrapper");
     if(gameWrapper) _board.render(gameWrapper);
   }
 

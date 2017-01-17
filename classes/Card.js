@@ -44,7 +44,8 @@ var Card = function(value) {
       value: this.value,
       faceColor: this.faceColor
     });
-    node.innerHTML = cardComponent
+    if(node) node.innerHTML = cardComponent
+    return cardComponent;
   }
 }
 

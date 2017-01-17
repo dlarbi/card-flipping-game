@@ -14,7 +14,6 @@ body {
   width: 100%;
   position: fixed;
   background: rgba(73,155,234,1);
-
 }
 
 .card_flipping_game__board {
@@ -27,7 +26,7 @@ body {
 
 .card_flipping_game__board_space {
   height: 25%;
-  width: 15%;
+  width: 16.66%;
   float: left;
 }
 
@@ -72,13 +71,14 @@ body {
   margin-top: -18px;
 }
 .card_flipping_game__card_face {
-  height: 90%;
+  height: 88%;
   width: 86%;
   margin: 7%;
   float: left;
   -webkit-box-shadow: inset 0px 0px 5px -1px rgba(0,0,0,0.35);
   -moz-box-shadow: inset 0px 0px 5px -1px rgba(0,0,0,0.35);
   box-shadow: inset 0px 0px 5px -1px rgba(0,0,0,0.35);
+  border-radius:3px;
 }
 .card_flipping_game__card_icon {
   position:relative;
