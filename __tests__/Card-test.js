@@ -10,7 +10,7 @@ describe('Card', function() {
     var card = new Card(3);
     card.faceUp = false;
     card.flip();
-    expect(card.faceUp).toBe(true)
+    expect(card.faceUp).toBe(true);
   });
 
 });
