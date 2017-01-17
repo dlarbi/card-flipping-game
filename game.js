@@ -19,12 +19,12 @@ var CardFlippingGame = function(Board, Card, options) {
     }
 
     function generateCardValues(boardSize) {
-      var result = [];
-      for(var i=0;i<2;i++) {
-        for(var j=1;j<=boardSize/2;j++) {
-          result.push(j);
-        }
+      var values = [];
+      for(var j=1;j<=boardSize/2;j++) {
+        values.push(j);
       }
+      var dup = values.slice(0);
+      var result = values.concat(dup);
       return result;
     }
 
@@ -55,7 +55,6 @@ var CardFlippingGame = function(Board, Card, options) {
   this.playCard = function(card) {
     card.flip();
     this.analyzeBoard();
-    this.render();
   }
 
   this.unflipFaceupCards = function() {
@@ -63,6 +62,7 @@ var CardFlippingGame = function(Board, Card, options) {
       card.flip();
     })
     _faceUpCards = [];
+    this.render();
   }
 
   this.removeFaceupCards = function() {
@@ -71,6 +71,7 @@ var CardFlippingGame = function(Board, Card, options) {
       _removedCount++;
     })
     _faceUpCards = [];
+    this.render();
   }
 
   this.analyzeBoard = function() {
@@ -89,11 +90,12 @@ var CardFlippingGame = function(Board, Card, options) {
           notSameCards = _faceUpCards[0].uid != _faceUpCards[1].uid;
 
       if(sameValues && notSameCards) {
-        this.removeFaceupCards();
+        setTimeout(this.removeFaceupCards.bind(this), 400);
       } else {
-        this.unflipFaceupCards();
+        setTimeout(this.unflipFaceupCards.bind(this), 400);
       }
     }
+    this.render();
   }
 
   this.renderBoard = function() {
