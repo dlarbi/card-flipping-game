@@ -5,7 +5,7 @@ var CardFlippingGame = require('./classes/CardFlippingGame.js');
 require('./assets/css/game.styles.css');
 
 var cardFlippingGame = new CardFlippingGame(Board, Card, {
-  boardSize: 4,
+  boardSize: 24,
   hideFlipDelay: 800
 });
 

@@ -4,8 +4,8 @@
 
  * ```git clone https://github.com/dlarbi/card-flipping-game.git```
  * ```npm install```
- * ```npm build:dev``` runs Unit tests and builds unminified bundle in /dist/game.bundle.js
- * ```npm build:production``` runs Unit tests and builds uglified+minified bundle
+ * ```npm run build:dev``` runs Unit tests and builds unminified bundle in /dist/game.bundle.js
+ * ```npm run build:production``` runs Unit tests and builds uglified+minified bundle
 
 * Open **/card-flipping-app/index.html** in your browser
 
