@@ -18,7 +18,8 @@ var Board = function(size) {
 
   this.render = function(node) {
     var N = _size;
-    var arrayOfLengthGameSize = Array.apply(null, {length: N}).map(Number.call, Number)
+    // Builds array with _size blank elements.  Hack because our template engine can loop over an array but cant do a while or for loop (See line 12)
+    var arrayOfLengthGameSize = Array.apply(null, {length: N}).map(Number.call, Number);
     var boardComponent = TemplateEngine(this.getTemplate(), {
       size: _size,
       cards: arrayOfLengthGameSize
