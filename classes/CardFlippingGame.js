@@ -6,7 +6,6 @@ var CardFlippingGame = function(Board, Card, options) {
   * Private (indicate private members with "_" as prefix)
   */
   var _board = new Board(options.boardSize);
-  var _removedCount = 0;
 
   /*
   * Public.
@@ -41,12 +40,13 @@ var CardFlippingGame = function(Board, Card, options) {
   })();
 
   this.faceUpCards = [];
+  this.removedCount = 0;
 
   this.render = function() {
     this.renderBoard();
     this.renderCards();
     this.bindEvents();
-    if(_removedCount === _board.getSize()) {
+    if(this.removedCount === _board.getSize()) {
       alert('You win! Play again.');
       location.reload();
     }
@@ -71,7 +71,7 @@ var CardFlippingGame = function(Board, Card, options) {
   this.removeFaceupCards = function() {
     this.faceUpCards.forEach(function(card, i, cards) {
       card.remove();
-      _removedCount++;
+      this.removedCount++;
     })
     this.faceUpCards = [];
     this.render();
@@ -117,7 +117,7 @@ var CardFlippingGame = function(Board, Card, options) {
   this.bindEvents = function() {
     var cardEls = document.getElementsByClassName('card_flipping_game__card');
     for (var i = 0; i < cardEls.length; i++) {
-      var eventType = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click'
+      var eventType = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
       cardEls[i].addEventListener(eventType, this.playCard.bind(this, this.cards[i]), false);
     }
   }
