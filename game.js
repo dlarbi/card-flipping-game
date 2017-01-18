@@ -16,10 +16,12 @@ window.CardFlippingGame = function(options) {
 /*
 * Expose as jQuery plugin
 */
-(function ( $ ) {
-  $.fn.cardFlippingGame = function(options) {
-    options.gameEl = this.attr('id');
-    var game = new CardFlippingGame(Board, Card, options)
-    game.render();
-  };
-}( jQuery ));
+if(typeof jQuery != "undefined") {
+  (function ( $ ) {
+    $.fn.cardFlippingGame = function(options) {
+      options.gameEl = this.attr('id');
+      var game = new CardFlippingGame(Board, Card, options)
+      game.render();
+    };
+  }( jQuery ));
+}

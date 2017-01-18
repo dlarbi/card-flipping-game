@@ -16,9 +16,26 @@ If you want to add this game to a webpage.  Add this element in your HTML markup
 
 ```<div id="game_wrapper" class="card_flipping_game"></div>```
 
-Include bundled game script below the element.
+Include bundled game script below the element:
 
 ```<script src="/dist/game.bundle.js"></script>```
+
+Initialize game:
+* As a jQuery Plugin
+```
+$('#game_wrapper').cardFlippingGame({
+	boardSize: 24,
+	hideFlipDelay: 800
+})
+```
+* Without jQuery
+```    
+CardFlippingGame({
+	boardSize: 24,     		//Number of cards in the game
+	hideFlipDelay: 800, 	//Time for cards to be removed or flip back over
+    gameEl: 'game_wrapper'	//Id of element in which the game should be rendered
+})
+```
 
 
 #### Dependencies
