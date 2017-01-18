@@ -6,6 +6,7 @@ var CardFlippingGame = function(Board, Card, options) {
   * Private (indicate private members with "_" as prefix)
   */
   var _board = new Board(options.boardSize);
+  var _removedCount = 0;
 
   /*
   * Public.
@@ -40,13 +41,12 @@ var CardFlippingGame = function(Board, Card, options) {
   })();
 
   this.faceUpCards = [];
-  this.removedCount = 0;
 
   this.render = function() {
     this.renderBoard();
     this.renderCards();
     this.bindEvents();
-    if(this.removedCount === _board.getSize()) {
+    if(_removedCount === _board.getSize()) {
       alert('You win! Play again.');
       location.reload();
     }
@@ -71,10 +71,14 @@ var CardFlippingGame = function(Board, Card, options) {
   this.removeFaceupCards = function() {
     this.faceUpCards.forEach(function(card, i, cards) {
       card.remove();
-      this.removedCount++;
+      _removedCount++;
     })
     this.faceUpCards = [];
     this.render();
+  }
+
+  this.getRemovedCount = function() {
+    return _removedCount;
   }
 
   this.analyzeBoard = function() {
@@ -102,7 +106,7 @@ var CardFlippingGame = function(Board, Card, options) {
   }
 
   this.renderBoard = function() {
-    var gameWrapper = document.getElementById("game_wrapper");
+    var gameWrapper = document.getElementById(options.gameEl);
     if(gameWrapper) _board.render(gameWrapper);
   }
 

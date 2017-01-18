@@ -4,9 +4,22 @@ var CardFlippingGame = require('./classes/CardFlippingGame.js');
 require('./assets/css/game.styles.css');
 require('./assets/css/smaller.screens.css');
 
-var cardFlippingGame = new CardFlippingGame(Board, Card, {
-  boardSize: 24,
-  hideFlipDelay: 800
-});
 
-cardFlippingGame.render();
+/*
+* Expose the initialization of Card Flipping Game to the user with options.
+*/
+window.CardFlippingGame = function(options) {
+  var game = new CardFlippingGame(Board, Card, options);
+  game.render();
+}
+
+/*
+* Expose as jQuery plugin
+*/
+(function ( $ ) {
+  $.fn.cardFlippingGame = function(options) {
+    options.gameEl = this.attr('id');
+    var game = new CardFlippingGame(Board, Card, options)
+    game.render();
+  };
+}( jQuery ));
