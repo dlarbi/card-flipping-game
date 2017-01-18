@@ -42,7 +42,7 @@ CardFlippingGame({
 
 > None, just plain Javascript.
 
-> ~10kb
+> ~11kb
 
 #### Development Dependencies
 * Jest for Unit testing.
@@ -52,6 +52,38 @@ CardFlippingGame({
 * css-loader and style-loader for combining our CSS stylesheets with our bundle.
 * ...
 * (See package.json)
+
+#### Patterns/ideas
+
+* /classes/Card.js and /classes/Board.js are components similar to the thought process found in React components, Vue components, et al.  Each component has a set of properties to describe the component's state, methods to act upon those properties, and a render method to decide an HTML markup based on the properties, which renders to a given DOM element.  There is no virtual DOM/diffing, or binding of component.render() methods to data change events, so each component is re-rendered when it's render method is called explicitly in the Controller.  For example, a card can do things like this (pseudocode):
+
+```
+var card = new Card(2);
+//card.faceUp == false
+card.flip();
+//card.faceUp == true
+card.render(DOMNode)
+// => <div class="card face-up">Value is 2</div> rendered in DOMNode
+
+```
+* /classes/CardFlippingGame.js is essentially a controller.  It is responsible for holding a collection of Cards and a Board, binding click/touch events to elements, and calling methods that manipulate our Card and Board components.  A good place to see its responsibilities, is by examples in our Tests.
+
+```
+// Test name: 'Only 2 cards can be faceup at a time'
+// (See __tests__/Game-test.js for full version)
+
+    var CardFlippingGame = require('../classes/CardFlippingGame.js');
+    var cardFlippingGame = new CardFlippingGame(Board, Card, {
+    	boardSize: 24,
+    	hideFlipDelay: 800
+    });
+    cardFlippingGame.playCard(cardFlippingGame.cards[0])
+    cardFlippingGame.playCard(cardFlippingGame.cards[1])
+    cardFlippingGame.playCard(cardFlippingGame.cards[2])
+
+    expect(cardFlippingGame.faceUpCards.length).toBe(2);
+
+```
 
 #### Stuff used to make this:
 

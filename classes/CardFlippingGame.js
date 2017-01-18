@@ -96,11 +96,8 @@ var CardFlippingGame = function(Board, Card, options) {
       var sameValues = this.faceUpCards[0].value === this.faceUpCards[1].value,
           notSameCards = this.faceUpCards[0].uid != this.faceUpCards[1].uid;
 
-      if(sameValues && notSameCards) {
-        setTimeout(this.removeFaceupCards.bind(this), options.hideFlipDelay);
-      } else {
-        setTimeout(this.unflipFaceupCards.bind(this), options.hideFlipDelay);
-      }
+      var gameAction = sameValues && notSameCards ? this.removeFaceupCards.bind(this) : this.unflipFaceupCards.bind(this);
+      setTimeout(gameAction, options.hideFlipDelay);
     }
     this.render();
   }
@@ -113,8 +110,7 @@ var CardFlippingGame = function(Board, Card, options) {
   this.renderCards = function() {
     var boardSpaceEls = document.getElementsByClassName('card_flipping_game__board_space');
     for(var i=0;i<this.cards.length;i++) {
-      var card = this.cards[i];
-      if(boardSpaceEls[i]) card.render(boardSpaceEls[i]);
+      if(boardSpaceEls[i]) this.cards[i].render(boardSpaceEls[i]);
     }
   }
 
