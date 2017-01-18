@@ -83,12 +83,10 @@ var CardFlippingGame = function(Board, Card, options) {
 
   this.analyzeBoard = function() {
     this.faceUpCards = [];
-    if(this.faceUpCards.length < 2) {
-      for(var i=0;i<this.cards.length;i++) {
-        var card = this.cards[i];
-        if(card.faceUp && !card.removed) {
-          this.faceUpCards.push(card)
-        }
+    for(var i=0;i<this.cards.length;i++) {
+      var card = this.cards[i];
+      if(card.faceUp && !card.removed) {
+        this.faceUpCards.push(card)
       }
     }
 
