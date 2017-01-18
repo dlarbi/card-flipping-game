@@ -3,6 +3,7 @@
 #### To get example up and running:
 
  * ```git clone https://github.com/dlarbi/card-flipping-game.git```
+ * ```cd card-flipping-game```
  * ```npm install```
  * ```npm run build:dev``` runs Unit tests and builds unminified bundle in /dist/game.bundle.js **OR** ```npm run build:production``` runs Unit tests and builds uglified+minified bundle
 
@@ -56,7 +57,6 @@ CardFlippingGame({
 #### Patterns/ideas
 
 * CSS is patterned using the BEM methodology.  For reference: https://en.bem.info/methodology/
-
 
 * /classes/Card.js and /classes/Board.js are components similar to the thought process found in React components, Vue components, et al.  Each component has a set of properties to describe the component's state, methods to act upon those properties, and a render method to decide an HTML markup based on the properties, which renders to a given DOM element.  There is no virtual DOM/diffing, or binding of component.render() methods to data change events, so each component is re-rendered when it's render method is called explicitly in the Controller.  For example, a card can do things like this (pseudocode):
 
