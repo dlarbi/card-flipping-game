@@ -25,7 +25,7 @@ describe('Card', function() {
     var card = new Card(15);
     card.uid = 77383;
     card.faceColor = '#aaa';
-    expect(card.render()).toBe("<div class=\"card_flipping_game__card\" data-uid=\"77383\"><img src=\"assets/images/crown-icon.png\" class=\"card_flipping_game__card_icon\"/></div>");
+    expect(card.render()).toBe("<div class=\"card_flipping_game__card\" data-uid=\"77383\"><div class=\"card_flipping_game__card_icon--diamond\"></div></div>");
   })
 
 });

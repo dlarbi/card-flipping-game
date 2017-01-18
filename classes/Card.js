@@ -24,7 +24,10 @@ var Card = function(value) {
   this.getTemplate = function() {
     return this.removed ?
         '<div class="card_flipping_game__card" data-uid="<%this.uid%>">'+
-          '<img src="assets/images/check.png" class="card_flipping_game__card_icon--smaller"/>'+
+          '<span class="card_flipping_game__card_icon--checkmark">'+
+            '<div class="checkmark_stem"></div>'+
+            '<div class="checkmark_kick"></div>'+
+          '</span>'+
         '</div>'
       : this.faceUp ?
         '<div class="card_flipping_game__card card_flipping_game__card--bigger" data-uid="<%this.uid%>">'+
@@ -34,7 +37,7 @@ var Card = function(value) {
         '</div>'
       :
         '<div class="card_flipping_game__card" data-uid="<%this.uid%>">'+
-          '<img src="assets/images/crown-icon.png" class="card_flipping_game__card_icon"/>'+
+          '<div class="card_flipping_game__card_icon--diamond"></div>'+
         '</div>';
   }
 
