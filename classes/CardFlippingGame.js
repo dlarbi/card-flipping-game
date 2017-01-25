@@ -1,4 +1,5 @@
 var TemplateEngine = require('./TemplateEngine.js');
+var Promise = require("bluebird");
 
 var CardFlippingGame = function(Board, Card, options) {
 
@@ -65,7 +66,6 @@ var CardFlippingGame = function(Board, Card, options) {
       card.flip();
     })
     this.faceUpCards = [];
-    this.render();
   }
 
   this.removeFaceupCards = function() {
@@ -74,7 +74,6 @@ var CardFlippingGame = function(Board, Card, options) {
       _removedCount++;
     })
     this.faceUpCards = [];
-    this.render();
   }
 
   this.getRemovedCount = function() {
@@ -95,7 +94,15 @@ var CardFlippingGame = function(Board, Card, options) {
           notSameCards = this.faceUpCards[0].uid != this.faceUpCards[1].uid;
 
       var gameAction = sameValues && notSameCards ? this.removeFaceupCards.bind(this) : this.unflipFaceupCards.bind(this);
-      setTimeout(gameAction, options.hideFlipDelay);
+      function actionPromise() {
+        return new Promise(function(resolve, reject) {
+          setTimeout(function() {
+            gameAction();
+            resolve();
+          }, options.hideFlipDelay);
+        })
+      }
+      actionPromise().then(this.render.bind(this));
     }
     this.render();
   }

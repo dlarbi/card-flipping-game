@@ -23,5 +23,8 @@
     "jest": "^18.1.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.7"
   }
 }
